@@ -4,6 +4,12 @@ Um "terminal" minimalista e eficiente para injetar parâmetros de busca avançad
 
 O LinkedIn muitas vezes mistura níveis de experiência ou exibe vagas antigas por padrão. Esta ferramenta resolve isso aplicando operadores booleanos automáticos e forçando filtros de ordenação, poupando tempo na hora da prospecção.
 
+## Sobre a Ideia e Contribuições
+
+**Disclaimer:** A ideia original desta ferramenta não é minha. Há um tempo, utilizei uma aplicação similar criada por um desenvolvedor (do qual, infelizmente, não me recordo o nome) que acabou saindo do ar. Como eu lembrava da lógica de funcionamento, optei por recriar esta versão. 
+
+Como a ideia não é originalmente minha e o objetivo final é apenas ajudar trabalhadores que buscam uma vaga, deixei este repositório 100% público. Qualquer pessoa é mais do que bem-vinda para colaborar, usar, replicar e difundir a aplicação. Enjoy!
+
 ## Funcionalidades
 
 * **Filtro Booleano de Senioridade:** Se você busca vagas de "Pleno", a ferramenta automaticamente injeta operadores (`NOT Estágio NOT Junior NOT Senior`) na URL para limpar os resultados.
