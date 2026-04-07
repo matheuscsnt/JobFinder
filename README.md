@@ -21,8 +21,7 @@ O projeto foi construído para ser leve, rápido e sem dependências complexas (
 ## Como usar
 
 ### Acesso Rápido (Online)
-A ferramenta está hospedada e pronta para uso via GitHub Pages:
-🔗 **[Acessar o Job Finder][https://buscajob.vercel.app/]**
+A ferramenta está hospedada e pronta para uso via Vercel: 🔗 [Acessar o Job Finder](https://buscajob.vercel.app/)
 
 ### Rodando Localmente
 Como é um projeto 100% Client-Side, você não precisa de nenhum servidor.
