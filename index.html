@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com;">
+    
+    <title>Job Finder - LinkedIn Search</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22black%22/><text y=%2270%22 x=%2210%22 font-family=%22monospace%22 font-size=%2270%22 font-weight=%22bold%22 fill=%22%234ade80%22>%3E_</text></svg>">
+    <meta name="description" content="A melhor forma para buscar vagas no LinkedIn.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-black min-h-screen flex items-center justify-center font-sans p-4 antialiased selection:bg-[#4ade80] selection:text-black">
+
+    <main class="bg-[#0a0a0a] w-full max-w-md p-6 rounded-xl border border-neutral-800 transition-all duration-300">
+        
+        <header class="mb-6">
+            <span class="text-[#4ade80] font-mono text-[10px] uppercase tracking-[0.2em] font-bold mb-3 block">
+                Main Tool
+            </span>
+            <h1 class="text-3xl text-neutral-100 font-mono font-bold tracking-tight mb-2">
+                Job Finder
+            </h1>
+            <p class="text-neutral-500 text-sm">
+                Terminal de injeção de parâmetros para busca de vagas avançada no LinkedIn.
+            </p>
+        </header>
+
+        <form id="jobForm" class="flex flex-col gap-4">
+            
+            <div>
+                <label for="position" class="block mb-1.5 text-[11px] font-mono uppercase tracking-widest text-neutral-500">Cargo</label>
+                <input type="text" id="position" name="position" required placeholder="Ex: Analista de Dados" 
+                    class="w-full p-2.5 bg-[#111111] border border-neutral-800 text-neutral-200 text-sm rounded-md focus:border-neutral-500 focus:ring-0 outline-none transition-colors placeholder-neutral-700 font-mono">
+            </div>
+
+            <div>
+                <label for="seniority" class="block mb-1.5 text-[11px] font-mono uppercase tracking-widest text-neutral-500">Senioridade</label>
+                <select id="seniority" name="seniority" required
+                    class="w-full p-2.5 bg-[#111111] border border-neutral-800 text-neutral-200 text-sm rounded-md focus:border-neutral-500 focus:ring-0 outline-none transition-colors cursor-pointer appearance-none font-mono">
+                    <option value="" disabled selected>Selecionar</option>
+                    <option value="Estagio">Estágio</option>
+                    <option value="Junior">Júnior</option>
+                    <option value="Pleno">Pleno</option>
+                    <option value="Senior">Sênior</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="modality" class="block mb-1.5 text-[11px] font-mono uppercase tracking-widest text-neutral-500">Modalidade</label>
+                <select id="modality" name="modality" required
+                    class="w-full p-2.5 bg-[#111111] border border-neutral-800 text-neutral-200 text-sm rounded-md focus:border-neutral-500 focus:ring-0 outline-none transition-colors cursor-pointer appearance-none font-mono">
+                    <option value="" disabled selected>Selecionar</option>
+                    <option value="1">Presencial</option>
+                    <option value="2">Remoto</option>
+                    <option value="3">Híbrido</option>
+                </select>
+            </div>
+
+            <div id="locationContainer" class="hidden transition-all duration-300">
+                <label for="location" class="block mb-1.5 text-[11px] font-mono uppercase tracking-widest text-neutral-500">Localização</label>
+                <input type="text" id="location" name="location" placeholder="Ex: Salvador, BA" 
+                    class="w-full p-2.5 bg-[#111111] border border-neutral-800 text-neutral-200 text-sm rounded-md focus:border-neutral-500 focus:ring-0 outline-none transition-colors placeholder-neutral-700 font-mono">
+            </div>
+
+            <div>
+                <label for="period" class="block mb-1.5 text-[11px] font-mono uppercase tracking-widest text-neutral-500">Período</label>
+                <select id="period" name="period" required
+                    class="w-full p-2.5 bg-[#111111] border border-neutral-800 text-neutral-200 text-sm rounded-md focus:border-neutral-500 focus:ring-0 outline-none transition-colors cursor-pointer appearance-none font-mono">
+                    <option value="" disabled selected>Selecionar</option>
+                    <option value="r86400">Últimas 24 Horas</option>
+                    <option value="r604800">Última Semana</option>
+                    <option value="r2592000">Último Mês</option>
+                </select>
+            </div>
+
+            <div class="mt-3 pt-3 border-t border-neutral-900">
+                <button type="submit" id="searchBtn" disabled
+                    class="w-full py-2.5 px-4 rounded-md font-mono text-sm font-medium transition-all duration-300 bg-[#111111] text-neutral-600 border border-neutral-800 cursor-not-allowed">
+                    Aguardando inputs...
+                </button>
+            </div>
+            
+        </form>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById('jobForm');
+            const searchBtn = document.getElementById('searchBtn');
+            const inputs = form.querySelectorAll('input, select');
+            const modalitySelect = document.getElementById('modality');
+            const locationContainer = document.getElementById('locationContainer');
+            const locationInput = document.getElementById('location');
+            const levels = ["Estagio", "Junior", "Pleno", "Senior"];
+
+            const getNotWords = (seniority) => {
+                if (!seniority || !levels.includes(seniority)) return "";
+                const excludedLevels = levels.filter(level => level !== seniority);
+                return excludedLevels.length > 0 ? `NOT ${excludedLevels.join(" NOT ")}` : "";
+            };
+
+            const checkFormValidity = () => {
+                const isValid = form.checkValidity();
+                
+                if (isValid) {
+                    searchBtn.disabled = false;
+                    searchBtn.textContent = "Executar Busca →";
+                    searchBtn.classList.remove('bg-[#111111]', 'text-neutral-600', 'border-neutral-800', 'cursor-not-allowed');
+                    searchBtn.classList.add('bg-white', 'hover:bg-neutral-200', 'text-black', 'border-transparent');
+                } else {
+                    searchBtn.disabled = true;
+                    searchBtn.textContent = "Aguardando inputs...";
+                    searchBtn.classList.remove('bg-white', 'hover:bg-neutral-200', 'text-black', 'border-transparent');
+                    searchBtn.classList.add('bg-[#111111]', 'text-neutral-600', 'border-neutral-800', 'cursor-not-allowed');
+                }
+            };
+
+            modalitySelect.addEventListener('change', (e) => {
+                const value = e.target.value;
+                if (value === '1' || value === '3') {
+                    locationContainer.classList.remove('hidden');
+                    locationInput.setAttribute('required', 'true');
+                } else {
+                    locationContainer.classList.add('hidden');
+                    locationInput.removeAttribute('required');
+                    locationInput.value = '';
+                }
+                checkFormValidity();
+            });
+
+            inputs.forEach(input => {
+                input.addEventListener('input', checkFormValidity);
+                input.addEventListener('change', checkFormValidity);
+            });
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault(); 
+
+                const formData = new FormData(form);
+                const position = formData.get('position').trim();
+                const seniority = formData.get('seniority');
+                const modality = formData.get('modality');
+                const period = formData.get('period');
+                const location = formData.get('location');
+
+                if (position && seniority && modality && period) {
+                    const keywords = `${encodeURIComponent(position)} ${getNotWords(seniority)}`.trim();
+                    let linkedInUrl = `https://www.linkedin.com/jobs/search/?sortBy=DD&keywords=${keywords}&f_WT=${modality}&f_TPR=${period}`;
+                    
+                    if (location && location.trim() !== '') {
+                        linkedInUrl += `&location=${encodeURIComponent(location.trim())}`;
+                    }
+                    
+                    window.open(linkedInUrl, '_blank', 'noopener,noreferrer');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
