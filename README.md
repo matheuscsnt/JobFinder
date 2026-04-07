@@ -4,11 +4,9 @@ Um "terminal" minimalista e eficiente para injetar parâmetros de busca avançad
 
 O LinkedIn muitas vezes mistura níveis de experiência ou exibe vagas antigas por padrão. Esta ferramenta resolve isso aplicando operadores booleanos automáticos e forçando filtros de ordenação, poupando tempo na hora da prospecção.
 
-## Sobre a Ideia e Contribuições
+**Disclaimer (Sobre a Ideia e Contribuições):** 
 
-**Disclaimer:** A ideia original desta ferramenta não é minha. Há um tempo, utilizei uma aplicação similar criada por um desenvolvedor (do qual, infelizmente, não me recordo o nome) que acabou saindo do ar. Como eu lembrava da lógica de funcionamento, optei por recriar esta versão. 
-
-Como a ideia não é originalmente minha e o objetivo final é apenas ajudar trabalhadores que buscam uma vaga, deixei este repositório 100% público. Qualquer pessoa é mais do que bem-vinda para colaborar, usar, replicar e difundir a aplicação. Enjoy!
+*A ideia original desta ferramenta não é minha. Há um tempo, utilizei uma aplicação similar criada por um desenvolvedor (do qual, infelizmente, não me recordo o nome) que acabou saindo do ar. Como eu lembrava da lógica de funcionamento, optei por recriar esta versão. <br> Como a ideia não é originalmente minha e o objetivo final é apenas ajudar trabalhadores que buscam uma vaga, deixei este repositório 100% público. Qualquer pessoa é mais do que bem-vinda para colaborar, usar, replicar e difundir a aplicação. Enjoy!*
 
 ## Funcionalidades
 
@@ -40,7 +38,7 @@ Ideal para filtrar oportunidades específicas. Por exemplo, se você está busca
 1. **Cargo:** `Machine Learning`
 2. **Senioridade:** `Pleno`
 3. **Modalidade:** `Híbrido`
-4. **Localização:** `Salvador, BA`
+4. **Localização:** `Salvador, BA` (Localização só aparece selecionando híbrido ou presencial)
 5. **Período:** `Última Semana`
 
 A ferramenta processará esses inputs e abrirá uma nova guia já com todos os filtros aplicados corretamente no LinkedIn.
